@@ -72,7 +72,7 @@ class GetMetricsTool(Tool):
                         "page": current_page,
                     }
 
-                    logger.info(
+                    logger.error(
                         f"url : { url }, headers : { headers }, params : { request_params }"
                     )
 

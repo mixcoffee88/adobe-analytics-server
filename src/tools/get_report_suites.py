@@ -63,7 +63,7 @@ class GetReportSuitesTool(Tool):
                 if validated_params.expansion:
                     params["expansion"] = validated_params.expansion
 
-                logger.info(
+                logger.error(
                     f"url : { url }, headers : { headers }, params : { params }"
                 )
                 async with session.get(url, headers=headers, params=params) as response:

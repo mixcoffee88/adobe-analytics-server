@@ -118,7 +118,7 @@ class GetRealtimeReportTool(Tool):
                     },
                 }
 
-                logger.info(
+                logger.error(
                     f"url : { url }, headers : { headers }, params : { request_params }"
                 )
 

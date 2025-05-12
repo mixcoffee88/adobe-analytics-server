@@ -147,7 +147,7 @@ class GetReportTool(Tool):
                 }
 
                 url = f"https://analytics.adobe.io/api/{self.auth.company_id}/reports"
-                logger.info(
+                logger.error(
                     f"url : { url }, headers : { headers }, params : { request_body }"
                 )
 

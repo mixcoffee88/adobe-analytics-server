@@ -48,7 +48,7 @@ class GetDataFeedsTool(Tool):
                 }
 
                 url = f"https://analytics.adobe.io/api/{self.auth.company_id}/datafeeds"
-                logger.info(f"url : { url }, headers : { headers }")
+                logger.error(f"url : { url }, headers : { headers }")
                 async with session.get(url, headers=headers) as response:
                     if response.status != 200:
                         error_text = await response.text()

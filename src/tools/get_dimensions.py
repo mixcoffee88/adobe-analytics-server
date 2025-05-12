@@ -62,7 +62,7 @@ class GetDimensionsTool(Tool):
                 if validated_params.page:
                     request_params["page"] = validated_params.page
 
-                logger.info(
+                logger.error(
                     f"url : { url }, headers : { headers }, params : { request_params }"
                 )
                 async with session.get(

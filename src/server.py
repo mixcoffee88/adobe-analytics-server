@@ -27,7 +27,7 @@ mcp = FastMCP(
 
         사용 가능한 기능 목록은 다음과 같습니다:
 
-        1. get_report - 리포트를 생성합니다. 이 전에 get_dimensions와 get_metrics를 통해 dimension 및 metric ID를 조회해야 합니다.
+        1. get_report - 리포트를 생성합니다.
         2. get_realtime_report - 실시간 데이터 리포트를 생성합니다.
         3. get_dimensions - 사용 가능한 차원 목록을 조회합니다.
         4. get_metrics - 사용 가능한 지표 목록을 조회합니다.
@@ -36,16 +36,7 @@ mcp = FastMCP(
         7. get_report_suites - 사용 가능한 Report Suite 목록을 조회합니다.
         8. get_data_feeds - 사용 가능한 데이터 피드 목록을 조회합니다.
 
-        사용자가 "2023년 4월에 방문자 수를 날짜별로 보고 싶어요"라고 말하면,
-        당신은 다음과 같은 순서로 툴을 사용해야 합니다:
 
-        - get_dimensions → "daterangeday" 확인
-        - get_metrics → "visitors" 라는 ID를 가진 지표가 있는지 확인
-        - get_report 호출 시:
-            - rsid: 사용자 또는 get_report_suites 결과 중 하나
-            - dimension: "daterangeday"
-            - metrics: ["visitors"] ← 접두사 없이
-            - date_range: "2023-04-01/2023-04-30"
     """,
     tools=[
         GetReportTool,

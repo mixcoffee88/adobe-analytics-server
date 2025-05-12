@@ -95,7 +95,7 @@ async def get_report(params: dict) -> dict:
             - limit (int, optional): 결과 제한 수
             - page (int, optional): 페이지 번호
     """
-    logger.info("get_report : ", params)
+    logger.error("get_report : ", params)
     auth = AdobeAuth()
     tool = GetReportTool(auth)
 
@@ -115,7 +115,7 @@ async def get_dimensions(params: dict) -> dict:
             - limit (int, optional): 결과 제한 수
             - page (int, optional): 페이지 번호
     """
-    logger.info("get_dimensions : ", params)
+    logger.error("get_dimensions : ", params)
     auth = AdobeAuth()
     tool = GetDimensionsTool(auth)
 
@@ -136,7 +136,7 @@ async def get_metrics(params: dict) -> dict:
             - page (int, optional): 페이지 번호 (기본값: 0)
             - max_results (int, optional): 최대 결과 수 (기본값: 20)
     """
-    logger.info("get_metrics : ", params)
+    logger.error("get_metrics : ", params)
     auth = AdobeAuth()
     tool = GetMetricsTool(auth)
 
@@ -149,11 +149,11 @@ async def get_metrics(params: dict) -> dict:
     if "max_results" not in params:
         params["max_results"] = 20
 
-    logger.info(
+    logger.error(
         f"Metrics 요청 시작: limit={params.get('limit')}, max_results={params.get('max_results')}"
     )
     result = await tool.execute(params)
-    logger.info(f"Metrics 요청 완료: {len(result.get('content', []))}개 항목 반환")
+    logger.error(f"Metrics 요청 완료: {len(result.get('content', []))}개 항목 반환")
 
     return result
 
@@ -168,7 +168,7 @@ async def get_segments(params: dict) -> dict:
             - limit (int, optional): 결과 제한 수
             - page (int, optional): 페이지 번호
     """
-    logger.info("get_segments : ", params)
+    logger.error("get_segments : ", params)
     auth = AdobeAuth()
     tool = GetSegmentsTool(auth)
 
@@ -188,7 +188,7 @@ async def get_calculated_metrics(params: dict) -> dict:
             - limit (int, optional): 결과 제한 수
             - page (int, optional): 페이지 번호
     """
-    logger.info("get_calculated_metrics : ", params)
+    logger.error("get_calculated_metrics : ", params)
     auth = AdobeAuth()
     tool = GetCalculatedMetricsTool(auth)
 
@@ -207,7 +207,7 @@ async def get_report_suites(params: dict) -> dict:
             - limit (int, optional): 결과 제한 수
             - page (int, optional): 페이지 번호
     """
-    logger.info("get_report_suites : ", params)
+    logger.error("get_report_suites : ", params)
     auth = AdobeAuth()
     tool = GetReportSuitesTool(auth)
     return await tool.execute(params)
@@ -224,7 +224,7 @@ async def get_realtime_report(params: dict) -> dict:
             - dimension (str, optional): 차원
             - limit (int, optional): 결과 제한 수
     """
-    logger.info("get_realtime_report : ", params)
+    logger.error("get_realtime_report : ", params)
     auth = AdobeAuth()
     tool = GetRealtimeReportTool(auth)
 
@@ -243,7 +243,7 @@ async def get_data_feeds(params: dict) -> dict:
             - limit (int, optional): 결과 제한 수
             - page (int, optional): 페이지 번호
     """
-    logger.info("get_data_feeds : ", params)
+    logger.error("get_data_feeds : ", params)
     auth = AdobeAuth()
     tool = GetDataFeedsTool(auth)
     return await tool.execute(params)
@@ -251,9 +251,9 @@ async def get_data_feeds(params: dict) -> dict:
 
 if __name__ == "__main__":
     try:
-        logger.info("Initializing server...")
+        logger.error("Initializing server...")
         mcp.run(transport="sse")
-        logger.info("Server started and connected successfully")
+        logger.error("Server started and connected successfully")
     except Exception as e:
         logger.error(f"Error starting server: {str(e)}", exc_info=True)
         sys.exit(1)

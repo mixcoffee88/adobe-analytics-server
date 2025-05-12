@@ -1,6 +1,6 @@
 import aiohttp
 import logging
-from src.auth.adobe_auth import AdobeAuth
+from auth.adobe_auth import AdobeAuth
 from pydantic import BaseModel, Field
 from typing import Dict, Any, Optional, List
 from mcp import Tool

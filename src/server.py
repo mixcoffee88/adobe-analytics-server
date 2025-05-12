@@ -60,7 +60,7 @@ async def get_report(params: dict) -> dict:
             - limit (int, optional): 결과 제한 수
             - page (int, optional): 페이지 번호
     """
-    print("get_report : ", params)
+    logger.info("get_report : ", params)
     auth = AdobeAuth()
     tool = GetReportTool(auth)
 
@@ -80,7 +80,7 @@ async def get_dimensions(params: dict) -> dict:
             - limit (int, optional): 결과 제한 수
             - page (int, optional): 페이지 번호
     """
-    print("get_dimensions : ", params)
+    logger.info("get_dimensions : ", params)
     auth = AdobeAuth()
     tool = GetDimensionsTool(auth)
 
@@ -101,7 +101,7 @@ async def get_metrics(params: dict) -> dict:
             - page (int, optional): 페이지 번호 (기본값: 0)
             - max_results (int, optional): 최대 결과 수 (기본값: 20)
     """
-    print("get_metrics : ", params)
+    logger.info("get_metrics : ", params)
     auth = AdobeAuth()
     tool = GetMetricsTool(auth)
 
@@ -133,7 +133,7 @@ async def get_segments(params: dict) -> dict:
             - limit (int, optional): 결과 제한 수
             - page (int, optional): 페이지 번호
     """
-    print("get_segments : ", params)
+    logger.info("get_segments : ", params)
     auth = AdobeAuth()
     tool = GetSegmentsTool(auth)
 
@@ -153,7 +153,7 @@ async def get_calculated_metrics(params: dict) -> dict:
             - limit (int, optional): 결과 제한 수
             - page (int, optional): 페이지 번호
     """
-    print("get_calculated_metrics : ", params)
+    logger.info("get_calculated_metrics : ", params)
     auth = AdobeAuth()
     tool = GetCalculatedMetricsTool(auth)
 
@@ -172,7 +172,7 @@ async def get_report_suites(params: dict) -> dict:
             - limit (int, optional): 결과 제한 수
             - page (int, optional): 페이지 번호
     """
-    print("get_report_suites : ", params)
+    logger.info("get_report_suites : ", params)
     auth = AdobeAuth()
     tool = GetReportSuitesTool(auth)
     return await tool.execute(params)
@@ -189,7 +189,7 @@ async def get_realtime_report(params: dict) -> dict:
             - dimension (str, optional): 차원
             - limit (int, optional): 결과 제한 수
     """
-    print("get_realtime_report : ", params)
+    logger.info("get_realtime_report : ", params)
     auth = AdobeAuth()
     tool = GetRealtimeReportTool(auth)
 
@@ -208,7 +208,7 @@ async def get_data_feeds(params: dict) -> dict:
             - limit (int, optional): 결과 제한 수
             - page (int, optional): 페이지 번호
     """
-    print("get_data_feeds : ", params)
+    logger.info("get_data_feeds : ", params)
     auth = AdobeAuth()
     tool = GetDataFeedsTool(auth)
     return await tool.execute(params)

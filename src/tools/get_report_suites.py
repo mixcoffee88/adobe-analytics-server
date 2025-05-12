@@ -63,8 +63,8 @@ class GetReportSuitesTool(Tool):
                 if validated_params.expansion:
                     params["expansion"] = validated_params.expansion
 
-                print(
-                    f"url : { url }, headers : { headers }, params : { request_params }"
+                logger.info(
+                    f"url : { url }, headers : { headers }, params : { params }"
                 )
                 async with session.get(url, headers=headers, params=params) as response:
                     if response.status == 200:

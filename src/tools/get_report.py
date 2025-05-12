@@ -134,8 +134,6 @@ class GetReportTool(Tool):
                 },
             }
 
-            print(f"url : { url }, headers : { headers }, params : { request_params }")
-
             # API 요청
             async with aiohttp.ClientSession() as session:
                 access_token = await self.auth.get_access_token(session)
@@ -149,6 +147,9 @@ class GetReportTool(Tool):
                 }
 
                 url = f"https://analytics.adobe.io/api/{self.auth.company_id}/reports"
+                logger.info(
+                    f"url : { url }, headers : { headers }, params : { request_body }"
+                )
 
                 async with session.post(
                     url, headers=headers, json=request_body

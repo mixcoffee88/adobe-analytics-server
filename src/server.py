@@ -36,7 +36,7 @@ mcp = FastMCP(
         7. get_report_suites - 사용 가능한 Report Suite 목록을 조회합니다.
         8. get_data_feeds - 사용 가능한 데이터 피드 목록을 조회합니다.
 
-        report dimension의 날짜 범위읠 경우 daterangeday를 사용합니다.
+        get_report : 날짜 범위읠 경우 dimension값을 daterangeday를 사용합니다.
         예시:
         {
             "date_range": "last_3_days",

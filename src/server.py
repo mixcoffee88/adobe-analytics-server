@@ -21,39 +21,7 @@ logger = logging.getLogger(__name__)
 mcp = FastMCP(
     name="adobe-analytics-server",
     description="""
-        당신은 Adobe Analytics API와 상호작용하는 분석 도우미입니다.
-
-        이 도구는 Report Suite ID, 날짜 범위, 지표(metrics), 차원(dimensions) 등을 기반으로 다양한 분석 요청을 수행할 수 있습니다.
-
-        사용 가능한 기능 목록은 다음과 같습니다:
-
-        1. get_report - 리포트를 생성합니다.
-        2. get_realtime_report - 실시간 데이터 리포트를 생성합니다.
-        3. get_dimensions - 사용 가능한 차원 목록을 조회합니다.
-        4. get_metrics - 사용 가능한 지표 목록을 조회합니다.
-        5. get_segments - 사용 가능한 세그먼트 목록을 조회합니다.
-        6. get_calculated_metrics - 계산된 지표 목록을 조회합니다.
-        7. get_report_suites - 사용 가능한 Report Suite 목록을 조회합니다.
-        8. get_data_feeds - 사용 가능한 데이터 피드 목록을 조회합니다.
-
-        get_report : 
-            date_range       : 날짜 범위 (상대적 또는 절대적)
-                상대적 날짜 범위 (예: last_3_days, last_7_days, last_30_days, this_week, last_week, this_month, last_month)
-                절대적 날짜 범위 (예: YYYY-MM-DD/YYYY-MM-DD)
-                예시: "2023-01-01/2023-01-31" 또는 "last_3_days"
-            metrics         : 지표 목록 (예: ["pageviews", "visitors"])
-            dimension       : 차원 (예: "daterangeday")
     """,
-    tools=[
-        GetReportTool,
-        GetDimensionsTool,
-        GetMetricsTool,
-        GetSegmentsTool,
-        GetCalculatedMetricsTool,
-        GetReportSuitesTool,
-        GetRealtimeReportTool,
-        GetDataFeedsTool,
-    ],
     host="0.0.0.0",
     port=80,
 )

@@ -20,8 +20,24 @@ logger = logging.getLogger(__name__)
 # MCP 서버 인스턴스 생성
 mcp = FastMCP(
     name="adobe-analytics-server",
-    description="You are an assistant that interacts with Adobe Analytics APIs. You can retrieve reports, metrics, and real-time data based on provided parameters such as report suite ID, date ranges, dimensions, and metrics.",
-    # description="당신은 Adobe Analytics API와 상호작용하는 분석 도우미입니다. 리포트 스위트 ID, 날짜 범위, 지표, 차원 등의 매개변수를 기반으로 보고서, 지표, 실시간 데이터를 조회할 수 있습니다."
+    description="당신은 Adobe Analytics API와 상호작용하는 분석 도우미입니다. 리포트 스위트 ID, 날짜 범위, 지표, 차원 등의 매개변수를 기반으로 보고서, 지표, 실시간 데이터를 조회할 수 있습니다."
+    " 또한 사용 가능한 차원, 지표, 세그먼트, 계산된 지표 목록을 가져올 수 있습니다."
+    " 이 도구는 Adobe Analytics API와 통신하여 데이터를 가져오고, 이를 기반으로 다양한 분석 작업을 수행할 수 있습니다."
+    "get_report,get_realtime_report을 호출하기전에  get_dimensions,get_metrics을 호출하여 사용 가능한 차원과 지표 목록을 확인할 수 있습니다."
+    "get_report_suites를 호출하여 사용 가능한 리포트 스위트 목록을 가져올 수 있습니다."
+    "get_segments를 호출하여 사용 가능한 세그먼트 목록을 가져올 수 있습니다."
+    "get_calculated_metrics를 호출하여 사용 가능한 계산된 지표 목록을 가져올 수 있습니다."
+    "get_data_feeds를 호출하여 사용 가능한 데이터 피드 목록을 가져올 수 있습니다.",
+    tools=[
+        GetReportTool,
+        GetDimensionsTool,
+        GetMetricsTool,
+        GetSegmentsTool,
+        GetCalculatedMetricsTool,
+        GetReportSuitesTool,
+        GetRealtimeReportTool,
+        GetDataFeedsTool,
+    ],
     host="0.0.0.0",
     port=80,
 )

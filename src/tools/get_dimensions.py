@@ -82,7 +82,7 @@ class GetDimensionsTool(Tool):
                         {
                             "id": item["id"],
                             "title": item["title"],
-                            "category": item["category"],
+                            "category": item.get("category", "unknown"),
                         }
                         for item in data
                     ]

@@ -164,6 +164,9 @@ class GetReportTool(Tool):
                         raise Exception(f"API 요청 실패: {error_text}")
 
                     result = await response.json()
+                    logger.error(
+                        f"result : { result }"
+                    )
                     return result
 
         except Exception as e:

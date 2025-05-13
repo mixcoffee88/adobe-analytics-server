@@ -46,6 +46,7 @@ mcp = FastMCP(
         - 차원(dimensions): `"variables/aemassetsource"`
         - 예: `"metrics/aemassetclicks"` → `"aemassetclicks"`
         - 예: `"variables/aemassetsource"` → `"aemassetsource"`
+
         - `rsid`(Report Suite ID)는 명시적으로 지정하지 않으면 기본 환경 변수 값을 사용합니다.
     """,
     host="0.0.0.0",
@@ -159,7 +160,7 @@ async def get_segments(params: dict) -> dict:
             - limit (int, optional): 결과 제한 수
             - page (int, optional): 페이지 번호
     """
-    logger.error("get_segments : ", params)
+    logger.error(f"get_segments : {params}")
     auth = AdobeAuth()
     tool = GetSegmentsTool(auth)
 
@@ -179,7 +180,7 @@ async def get_calculated_metrics(params: dict) -> dict:
             - limit (int, optional): 결과 제한 수
             - page (int, optional): 페이지 번호
     """
-    logger.error("get_calculated_metrics : ", params)
+    logger.error(f"get_calculated_metrics : {params}")
     auth = AdobeAuth()
     tool = GetCalculatedMetricsTool(auth)
 
@@ -198,7 +199,7 @@ async def get_report_suites(params: dict) -> dict:
             - limit (int, optional): 결과 제한 수
             - page (int, optional): 페이지 번호
     """
-    logger.error("get_report_suites : ", params)
+    logger.error(f"get_report_suites : {params}")
     auth = AdobeAuth()
     tool = GetReportSuitesTool(auth)
     return await tool.execute(params)
@@ -215,7 +216,7 @@ async def get_realtime_report(params: dict) -> dict:
             - dimension (str, optional): 차원
             - limit (int, optional): 결과 제한 수
     """
-    logger.error("get_realtime_report : ", params)
+    logger.error(f"get_realtime_report : {params}")
     auth = AdobeAuth()
     tool = GetRealtimeReportTool(auth)
 
@@ -234,7 +235,7 @@ async def get_data_feeds(params: dict) -> dict:
             - limit (int, optional): 결과 제한 수
             - page (int, optional): 페이지 번호
     """
-    logger.error("get_data_feeds : ", params)
+    logger.error(f"get_data_feeds : {params}")
     auth = AdobeAuth()
     tool = GetDataFeedsTool(auth)
     return await tool.execute(params)

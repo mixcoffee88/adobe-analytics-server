@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 
 class GetDimensionsParams(BaseModel):
-    rsid: str = Field(..., description="리포트 스위트 ID")
+    rsid: Optional[str] = Field(..., description="리포트 스위트 ID")
     limit: Optional[int] = Field(default=50, description="결과 제한")
     page: Optional[int] = Field(default=0, description="페이지 번호")
 
@@ -77,7 +77,15 @@ class GetDimensionsTool(Tool):
                         )
                         raise Exception(f"API request failed: {error_text}")
 
-                    result = await response.json()
+                    data = await response.json()
+                    result = [
+                        {
+                            "id": item["id"],
+                            "title": item["title"],
+                            "category": item["category"],
+                        }
+                        for item in data
+                    ]
 
                     # 응답 형식에 따라 적절히 처리
                     if isinstance(result, dict):

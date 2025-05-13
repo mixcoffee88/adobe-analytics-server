@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  adobe-analytics-mcp:
+    ports:
+      - "9001:9001"
+    build:
+      context: ../  # 상위 경로: /api/adobe-analytics-server
+      dockerfile: Dockerfile
+    container_name: adobe-analytics-mcp
+    env_file:
+      - ../.env
+    restart: unless-stopped

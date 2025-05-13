@@ -119,7 +119,7 @@ class GetRealtimeReportTool(Tool):
                 }
 
                 logger.error(
-                    f"url : { url }, headers : { headers }, params : { request_params }"
+                    f"url : { url }, headers : { headers }, params : { request_body }"
                 )
 
                 async with session.post(

@@ -88,7 +88,15 @@ class GetMetricsTool(Tool):
                             )
                             raise Exception(f"API 요청 실패: {error_text}")
 
-                        result = await response.json()
+                        data = await response.json()
+                        result = [
+                            {
+                                "id": item["id"],
+                                "title": item["title"],
+                                "category": item["category"],
+                            }
+                            for item in data
+                        ]
 
                         if isinstance(result, dict):
                             content = result.get("content", [])

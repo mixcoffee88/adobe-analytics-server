@@ -12,6 +12,10 @@ from tools.get_calculated_metrics import GetCalculatedMetricsTool
 from tools.get_report_suites import GetReportSuitesTool
 from tools.get_realtime_report import GetRealtimeReportTool
 from tools.get_data_feeds import GetDataFeedsTool
+from dotenv import load_dotenv
+
+# .env 파일 불러오기
+load_dotenv()
 
 # 로깅 설정
 logging.basicConfig(level=logging.INFO)
@@ -21,9 +25,23 @@ logger = logging.getLogger(__name__)
 mcp = FastMCP(
     name="adobe-analytics-server",
     description="""
+        이 도구는 Report Suite ID, 날짜 범위, 지표(metrics), 차원(dimensions) 등을 기반으로 다양한 분석 요청을 수행할 수 있습니다.
+        사용 가능한 기능 목록은 다음과 같습니다:
+            1. get_report - 리포트를 생성합니다.
+            2. get_realtime_report - 실시간 데이터 리포트를 생성합니다.
+            3. get_dimensions - 사용 가능한 차원 목록을 조회합니다.
+            4. get_metrics - 사용 가능한 지표 목록을 조회합니다.
+            5. get_segments - 사용 가능한 세그먼트 목록을 조회합니다.
+            6. get_calculated_metrics - 계산된 지표 목록을 조회합니다.
+            7. get_report_suites - 사용 가능한 Report Suite 목록을 조회합니다.
+            8. get_data_feeds - 사용 가능한 데이터 피드 목록을 조회합니다.
+        get_report, get_realtime_report 조회시 사용되는 metrics, dimensions는
+        get_metrics, get_dimensions에서 조회된 데이터의 값을 사용해야 합니다.
+        get_metrics의 반환값 id, title, category 중 id 값은 format은 metrics/aemassetclicks와 같고 get_report, get_realtime_report에 전달시 /기준으로 마지막 값을 사용해야 합니다.
+        get_dimensions의 반환값 id, title, category 중 id 값은 format은 variables/aemassetsource와 같고 get_report, get_realtime_report에에 전달시 /기준으로 마지막 값을 사용해야 합니다
     """,
     host="0.0.0.0",
-    port=80,
+    port=int(os.getenv("SERVER_PORT", 8080)),  # .env에서 불러오며, 기본값 8080
 )
 
 # 환경 변수에서 RSID 가져오기

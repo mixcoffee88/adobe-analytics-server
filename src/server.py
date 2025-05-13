@@ -41,15 +41,11 @@ mcp = FastMCP(
         8. get_data_feeds – 사용 가능한 데이터 피드 목록을 조회합니다.
 
         ### 중요 사용 규칙
-
-        - `get_report` 또는 `get_realtime_report` 호출 전에 반드시 `get_metrics`, `get_dimensions`를 먼저 호출하여 사용 가능한 `id` 값을 확인해야 합니다.
-        - `get_metrics` 또는 `get_dimensions`의 `id` 값은 각각 다음 형식으로 반환됩니다:
+        - `get_report` 또는 `get_realtime_report`에 전달할 때는 `/` 기준으로 마지막 segment만 사용해야 합니다:
         - 지표(metrics): `"metrics/aemassetclicks"`
         - 차원(dimensions): `"variables/aemassetsource"`
-        - `get_report` 또는 `get_realtime_report`에 전달할 때는 `/` 기준으로 마지막 segment만 사용해야 합니다:
         - 예: `"metrics/aemassetclicks"` → `"aemassetclicks"`
         - 예: `"variables/aemassetsource"` → `"aemassetsource"`
-
         - `rsid`(Report Suite ID)는 명시적으로 지정하지 않으면 기본 환경 변수 값을 사용합니다.
     """,
     host="0.0.0.0",

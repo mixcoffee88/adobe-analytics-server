@@ -25,20 +25,32 @@ logger = logging.getLogger(__name__)
 mcp = FastMCP(
     name="adobe-analytics-server",
     description="""
-        이 도구는 Report Suite ID, 날짜 범위, 지표(metrics), 차원(dimensions) 등을 기반으로 다양한 분석 요청을 수행할 수 있습니다.
-        사용 가능한 기능 목록은 다음과 같습니다:
-            1. get_report - 리포트를 생성합니다.
-            2. get_realtime_report - 실시간 데이터 리포트를 생성합니다.
-            3. get_dimensions - 사용 가능한 차원 목록을 조회합니다.
-            4. get_metrics - 사용 가능한 지표 목록을 조회합니다.
-            5. get_segments - 사용 가능한 세그먼트 목록을 조회합니다.
-            6. get_calculated_metrics - 계산된 지표 목록을 조회합니다.
-            7. get_report_suites - 사용 가능한 Report Suite 목록을 조회합니다.
-            8. get_data_feeds - 사용 가능한 데이터 피드 목록을 조회합니다.
-        get_report, get_realtime_report 조회시 사용되는 metrics, dimensions는
-        get_metrics, get_dimensions에서 조회된 데이터의 값을 사용해야 합니다.
-        get_metrics의 반환값 id, title, category 중 id 값은 format은 metrics/aemassetclicks와 같고 get_report, get_realtime_report에 전달시 /기준으로 마지막 값을 사용해야 합니다.
-        get_dimensions의 반환값 id, title, category 중 id 값은 format은 variables/aemassetsource와 같고 get_report, get_realtime_report에에 전달시 /기준으로 마지막 값을 사용해야 합니다
+        이 도구는 Adobe Analytics Reporting API와 통신하여 다양한 분석 요청을 수행합니다.
+
+        사용자는 Report Suite ID(rsid), 날짜 범위(date range), 지표(metrics), 차원(dimensions) 등의 매개변수를 설정하여 리포트를 조회할 수 있습니다.
+
+        사용 가능한 기능은 다음과 같습니다:
+
+        1. get_report – 일반 리포트를 생성합니다.
+        2. get_realtime_report – 실시간 데이터를 기반으로 리포트를 생성합니다.
+        3. get_dimensions – 사용 가능한 차원 목록을 조회합니다.
+        4. get_metrics – 사용 가능한 지표 목록을 조회합니다.
+        5. get_segments – 사용 가능한 세그먼트 목록을 조회합니다.
+        6. get_calculated_metrics – 계산된 지표 목록을 조회합니다.
+        7. get_report_suites – 사용 가능한 Report Suite 목록을 조회합니다.
+        8. get_data_feeds – 사용 가능한 데이터 피드 목록을 조회합니다.
+
+        ### 중요 사용 규칙
+
+        - `get_report` 또는 `get_realtime_report` 호출 전에 반드시 `get_metrics`, `get_dimensions`를 먼저 호출하여 사용 가능한 `id` 값을 확인해야 합니다.
+        - `get_metrics` 또는 `get_dimensions`의 `id` 값은 각각 다음 형식으로 반환됩니다:
+        - 지표(metrics): `"metrics/aemassetclicks"`
+        - 차원(dimensions): `"variables/aemassetsource"`
+        - `get_report` 또는 `get_realtime_report`에 전달할 때는 `/` 기준으로 마지막 segment만 사용해야 합니다:
+        - 예: `"metrics/aemassetclicks"` → `"aemassetclicks"`
+        - 예: `"variables/aemassetsource"` → `"aemassetsource"`
+
+        - `rsid`(Report Suite ID)는 명시적으로 지정하지 않으면 기본 환경 변수 값을 사용합니다.
     """,
     host="0.0.0.0",
     port=int(os.getenv("SERVER_PORT", 8080)),  # .env에서 불러오며, 기본값 8080
